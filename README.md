@@ -6,8 +6,8 @@ The Odin Project - JavaScript - Project: Todo List
 ### UI
 HTML/CSS:
 - [ ] Create "Static" part of the UI.
-- [ ] ...
-- [ ] ...
+- [ ] Create "Add ToDo" form
+- [ ] (Optional: Figure a way to add sub-list / checklist in a ToDo)
 - [ ] Style everything / Refactor / Comments.  
 
 ### JS
@@ -38,9 +38,9 @@ HTML/CSS:
 Images:
 - x
 Color Palette:
-- x
+- github.com
 Icons:
-- x
+- https://materialdesignicons.com/
 Font:
 - x
 Code:
