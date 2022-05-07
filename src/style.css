@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color-sidebar: #2d333b;
+    --bg-color-li-hover: rgba(34, 39, 46, 0.6);
+    --bg-color-content: #22272e;
+    --text-light: #adbac7;
+    --blue: #539bf5;
+    --green: #347d39;
+}
+
+body {
+    display: flex;
+    height: 100%;
+    min-height: 100vh;
+    color: var(--text-light);
+    font-family: sans-serif;
+}
+
+h1 {
+    color: var(--blue);
+}
+
+ul {
+    list-style: none;
+}
+
+
+/***********************
+SIDEBAR
+***********************/
+
+.sidebar {
+    background-color: var(--bg-color-sidebar);
+    flex: 1;
+    min-width: 250px;
+    padding: 16px;
+}
+
+li:hover {
+    cursor: pointer;
+    background-color: var(--bg-color-li-hover);
+}
+
+button {
+    padding: 8px;
+    border: 0;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+
+/***********************
+CONTENT
+***********************/
+
+.content {
+    background-color: var(--bg-color-content);
+    flex: 3;
+    padding: 64px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/***********************
+ADD TODO FORM
+***********************/
+
+.todo-form {
+    display: grid;
+    align-items: center;
+    grid-template-rows: 36px;
+    grid-template-columns: 1fr 150px 36px;
+    margin-bottom: 32px;
+    border-bottom: 6px solid var(--blue);
+}
+
+.form-title-div,
+.form-date-div,
+.form-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-title-div {
+    grid-column: 1;
+}
+
+.form-date-div {
+    grid-column: 2;
+}
+
+.form-title-div>input,
+.form-date-div>input,
+.form-description-div>textarea,
+.form-project-div>select {
+    flex: 1;
+}
+
+.todo-form input,
+.todo-form textarea,
+.todo-form select {
+    background-color: var(--bg-color-sidebar);
+    color: var(--text-light);
+    opacity: 0.8;
+    border: 1px solid var(--blue);
+    padding: 8px;
+    font-size: 1rem;
+}
+
+.form-button {
+    width: 108px;
+    background-color: var(--green);
+    color: var(--text-light);
+    font-weight: 700;
+    opacity: 0.8;
+    border: 0;
+    grid-column: 1;
+    margin: 8px 0 32px 0;
+}
+
+.form-button:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+form svg {
+    display: flex;
+    justify-self: center;
+    grid-column: 3;
+    grid-row: 1;
+    transition: all .3s ease;
+}
+
+form svg:hover {
+    cursor: pointer;
+    color: var(--blue);
+}
+
+
+/* 
+form>div {
+    position: relative;
+}
+
+form>div>label {
+    opacity: 1;
+    position: absolute;
+    top: 8px;
+    left: 4px;
+}
+
+input:focus+label {
+    opacity: 0;
+}
+
+input:not(:placeholder-shown)+label {
+    opacity: 0;
+}
+
+*/
+
+.form-optional {
+    grid-column: span 2;
+    display: none;
+}
+
+
+/***********************
+ TODO CARD
+***********************/
+
+.todo-card {
+    display: grid;
+    align-items: center;
+    grid-template-rows: 36px;
+    grid-template-columns: min-content 1fr 150px 36px 36px;
+    gap: 8px;
+}
+
+.todo-card-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-card-input {}
+
+.todo-card-optional {
+    grid-column: 2 /4;
+    display: none;
+}
+
+.todo-card-input {
+    background-color: var(--bg-color-sidebar);
+    color: var(--text-light);
+    opacity: 1;
+    border: 0;
+    border-bottom: 1px solid var(--blue);
+    padding: 8px;
+    font-size: 1rem;
+}
+
+.todo-card img {
+    display: flex;
+    justify-self: center;
+    transition: all .3s ease;
+}
+
+.todo-card img:hover {
+    cursor: pointer;
+    color: var(--blue);
+}
+
+
+/***********************
+JS CLASS
+***********************/
+
+.show {
+    display: flex;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
