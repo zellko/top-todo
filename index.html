@@ -6,10 +6,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo List</title>
+    <script src="main.js" defer></script>
 </head>
 
 <body>
-    <script src="main.js"></script>
+    <div class="sidebar">
+        <h1>ToDo List</h1>
+        <ul>
+            <li>Today</li>
+            <li>Next 7 days</li>
+            <li>Important</li>
+            <li>All tasks</li>
+        </ul>
+
+        <h3>Project</h3>
+        <ul class="project-list">
+            <li>TOP</li>
+            <li>Personal</li>
+            <li>Default</li>
+        </ul>
+
+        <button>New Project</button>
+    </div>
+    <div class="content">
+        <form class="todo-form" action="">
+
+            <div class="form-title-div">
+                <input type="text" id="form-title" name="form-title" placeholder="ToDo Title..." required>
+                <!-- <label for="form-title">ToDo Title</label> -->
+                <!-- <p class="form-required">required</p> -->
+            </div>
+
+            <div class="form-date-div">
+                <input type="date" id="form-date" name="form-date">
+                <!-- <p class="form-required">required</p> -->
+            </div>
+
+            <div class="form-description-div form-optional">
+                <textarea id="form-description" name="form-description" placeholder="ToDo Note..."></textarea>
+                <!-- <label for="form-description">ToDo Note...</label> -->
+                <!-- <p class="form-required">required</p> -->
+            </div>
+
+
+
+            <div class="form-project-div form-optional">
+                <select id="form-project" name="form-project">
+                    <option value="top">TOP</option>
+                    <option value="default">Default</option>
+                  </select>
+            </div>
+
+            <!-- <label id="form-title-label" for="title">
+
+            <input type="text" name="title" id="form-title" placeholder="Add task..." required>
+        </label>
+
+            <input type="text" name="description" id="form-description" placeholder="ToDo Note...">
+            <input type="date" name="date" id="form-date"> -->
+            <button class="form-button" type="button">ADD TODO</button>
+            <svg style="width:36px;height:36px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+            </svg>
+
+        </form>
+    </div>
 </body>
 
 </html>
