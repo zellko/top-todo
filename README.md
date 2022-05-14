@@ -13,22 +13,27 @@ HTML/CSS:
 ### JS
 
 1. ToDo Object:
-- [ ] Create ToDo object dynamically, using factory function or class 
-- [ ] Store the ToDo in a array
-- [ ] ...
+- [x] Create ToDo object dynamically, using factory function or class 
+- [x] Store the ToDo in a array
+- [ ] (Add more options (checklist, note, ...))
 
 2. Create function/module for the application:
 - [ ] Check if local storage is available
-- [ ] Create New ToDo
+- [x] Create New ToDo
 - [ ] Remove ToDo
+- [x] Remove All ToDo
 - [ ] Edit ToDo
 - [ ] (Sorting ToDo based on x criteria)
 - [ ] ...
 
 3. DOM Manipulation:
 - [ ] Module to: Display project list on page dynamically(DOM Manipulation)
-- [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), based on sidebar option
-- [ ] Module to: Create ToDo "card" template
+- [x] Module to: Display ToDo list on page dynamically(DOM Manipulation), ALL TODO's
+- [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), TODAY TODO's
+- [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), NEXT 7 DAYS TODO's
+- [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), IMPORTANT TODO's
+- [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), PROJECT TODO's
+- [x] Module to: Create ToDo "card" template
 - [ ] ...
 
 4. Check for SOLID Devlopement:
