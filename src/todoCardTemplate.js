@@ -1,7 +1,7 @@
 import extendIcon from './chevron-down.svg';
 import deleteIcon from './delete.svg';
 
-function createTodoCard() {
+function createTodoCard(projectList) {
     const toDoCard = document.createElement("div");
     toDoCard.classList.add("todo-card");
 
@@ -19,15 +19,40 @@ function createTodoCard() {
     const toDoDelete = document.createElement("img");
     toDoDelete.src = deleteIcon;
 
-    const test = document.createElement("input");
-    test.classList.add("todo-card-input");
-    test.classList.add("todo-card-optional");
+    const toDoNote = document.createElement("textarea");
+
+    const toDoProject = document.createElement("select");
+    for (let project of projectList) {
+        const projectOption = document.createElement("option");
+        projectOption.value = project;
+        projectOption.textContent = project;
+        toDoProject.appendChild(projectOption);
+    };
+
+    const toDoPriotity = document.createElement("select");
+    const prioOne = document.createElement("option");
+    const prioTwo = document.createElement("option");
+    const prioTree = document.createElement("option");
+    prioOne.value = 1;
+    prioOne.textContent = "1";
+    prioTwo.value = 2;
+    prioTwo.textContent = "2";
+    prioTree.value = 3;
+    prioTree.textContent = "3";
+
+    toDoPriotity.append(prioOne, prioTwo, prioTree);
 
     toDoextend.classList.add("todo-card-extend");
     toDoTitle.classList.add("todo-card-input");
     toDoCheckBox.classList.add("todo-card-input");
     toDoDate.classList.add("todo-card-input");
-    toDoCard.append(toDoCheckBox, toDoTitle, toDoDate, toDoextend, toDoDelete, test);
+    toDoNote.classList.add("todo-card-input");
+    toDoNote.classList.add("todo-card-optional");
+    toDoProject.classList.add("todo-card-input");
+    toDoProject.classList.add("todo-card-optional");
+    toDoPriotity.classList.add("todo-card-input");
+    toDoPriotity.classList.add("todo-card-optional");
+    toDoCard.append(toDoCheckBox, toDoTitle, toDoDate, toDoextend, toDoDelete, toDoNote, toDoProject, toDoPriotity);
 
     return toDoCard;
 };

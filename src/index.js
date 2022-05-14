@@ -7,7 +7,7 @@ const formextend = document.querySelector("svg");
 const buttonAddProject = document.querySelector("button");
 const buttonAddTodo = document.querySelector(".form-button");
 const formOptionals = document.querySelectorAll(".form-optional");
-let projectArray = ["default", "top"];
+let projectListArray = ["default", "top"];
 let toDoListArray = [];
 
 
@@ -16,7 +16,33 @@ let toDoListArray = [];
 DOM / CONTENT LOADING / MANIPULATION
 ****************************************/
 
-loadContent.loadAllTodo(["12345"]); //test
+// loadContent.loadAllTodo(["12345"]); //test
+
+function domLoadAllTodo() {
+    loadContent.loadAllTodo(toDoListArray, projectListArray); //test
+};
+
+function removeRemoveAllTodo() {
+    const domToDoCard = document.querySelectorAll(".todo-card");
+    domToDoCard.forEach(element => content.removeChild(element));
+};
+
+/****************************************
+GET FORM DATA
+****************************************/
+
+function getFormData() {
+    const formData = new FormData(document.querySelector('form'));
+
+    //... Convert form data to array
+    let formDataArray = [];
+    for (let pair of formData.entries()) {
+        if (pair[0] === "form-title" && pair[1] === "") return; // Ignore click if title is empty
+        formDataArray.push(pair[1]);
+    }
+
+    return formDataArray;
+};
 
 /****************************************
 TODO OBJECT CREATION / MODIFICATION
@@ -31,21 +57,23 @@ TODO OBJECT CREATION / MODIFICATION
 const ToDoObject = ([...args]) => {
     // Factory function to create ToDo Object
     console.log(args);
-    // const title = args[0];
-    // const priority = args[1];
 
     // Get the datas from the argument
-    const getTitle = () => args[0];
-    const getDate = () => args[1];
-    const getPriority = () => args[2];
-    const getDesciption = () => args[3];
+    const title = args[0];
+    const date = args[1];
+    const note = args[2];
+    const project = args[3];
+    const priority = args[4];
+    //const getTitle = () => args[0];
+    // const getDate = () => args[1];
+    // const getNote = () => args[2];
+    // const getProject = () => args[3];
+    // const getPriority = () => args[4];
     const todoID = toDoListArray.length;
 
     const push = () => {
         // Push the datas to the ToDo list array
-        // console.log(e);
-        // console.log(this);
-        toDoListArray.push({ title: getTitle(), priority: getPriority(), id: todoID })
+        toDoListArray.push({ title: title, date: date, note: note, project: project, priority: priority, id: todoID })
     };
 
     return { push };
@@ -60,18 +88,16 @@ buttonAddTodo.addEventListener("click", () => {
     // When the button "ADD TODO" is clicked...
 
     //... Get the datas from the form
-    const formData = new FormData(document.querySelector('form'));
-
-    //... Convert form data to array
-    let formDataArray = [];
-    for (let pair of formData.entries()) {
-        if (pair[0] === "form-title" && pair[1] === "") return; // Ignore click if title is empty
-        formDataArray.push(pair[1]);
-    }
+    const formData = getFormData();
+    console.log(formData);
 
     //... Create a new object
-    const newTodo = ToDoObject(formDataArray);
+    const newTodo = ToDoObject(formData);
     newTodo.push(); //... and push it to the ToDo list array
+
+    //... Refresh ToDo Display
+    removeRemoveAllTodo();
+    domLoadAllTodo();
 
     console.log(toDoListArray)
 });
@@ -83,10 +109,16 @@ content.addEventListener("click", (e) => {
     // Extend the ToDo card if the button is clicked 
     if (e.target.classList[0] === "todo-card-extend") {
         const card = e.target.parentElement;
+        const chevronImage = e.target;
+
+        console.log(e.target)
         for (let child of card.childNodes) {
-            if (child.classList[1] === "todo-card-optional") child.classList.toggle("show");
+            if (child.classList[1] === "todo-card-optional") {
+                child.classList.toggle("show");
+            };
         };
 
+        chevronImage.classList.toggle("rotate"); // Rotate "chevron" image
 
     };
 });

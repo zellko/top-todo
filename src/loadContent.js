@@ -8,22 +8,37 @@ const pageContent = document.querySelector(".content");
 
 const loadContent = (() => {
 
-    const loadAllTodo = (listArray) => {
-        console.log(listArray);
+    const loadAllTodo = (listArray, projectList) => {
         console.log("Loading all ToDo's");
+        console.log("project list: ");
+        console.log(projectList);
 
-        const toDoCard = createTodoCard();
+        listArray.forEach(element => {
+            const toDoCard = createTodoCard(projectList);
 
-        console.log(toDoCard.childNodes[0]);
-        toDoCard.childNodes[0].value = "tdsdsaest";
+            const toDoTitle = toDoCard.childNodes[1];
+            const toDoDate = toDoCard.childNodes[2];
+            const toDoNote = toDoCard.childNodes[5];
+            const toDoProject = toDoCard.childNodes[6];
+            const toDoPrority = toDoCard.childNodes[7];
 
-        console.log(toDoCard);
-        pageContent.appendChild(toDoCard);
+            toDoTitle.value = element.title;
+            toDoDate.value = element.date;
+            toDoNote.value = element.note;
+            toDoProject.value = element.project;
+            toDoPrority.value = element.priority;
+            const toDoID = element.id;
+
+            toDoCard.setAttribute("ID", toDoID);
+            pageContent.appendChild(toDoCard);
+
+        });
+
+
 
     };
 
     const loadTodayTodo = (listArray) => {
-        console.log(listArray);
         console.log("Loading Today ToDo's");
     };
 
