@@ -5,8 +5,8 @@ The Odin Project - JavaScript - Project: Todo List
 
 ### UI
 HTML/CSS:
-- [ ] Create "Static" part of the UI.
-- [ ] Create "Add ToDo" form
+- [x] Create "Static" part of the UI.
+- [x] Create "Add ToDo" form
 - [ ] (Optional: Figure a way to add sub-list / checklist in a ToDo)
 - [ ] Style everything / Refactor / Comments.  
 
@@ -22,7 +22,7 @@ HTML/CSS:
 - [x] Create New ToDo
 - [ ] Remove ToDo
 - [x] Remove All ToDo
-- [ ] Edit ToDo
+- [x] Edit ToDo
 - [ ] (Sorting ToDo based on x criteria)
 - [ ] ...
 
@@ -34,7 +34,7 @@ HTML/CSS:
 - [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), IMPORTANT TODO's
 - [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), PROJECT TODO's
 - [x] Module to: Create ToDo "card" template
-- [ ] ...
+- [ ] Allow user to edit toDo object
 
 4. Check for SOLID Devlopement:
 - [ ] Refactor / check code for SOLID devlopement
