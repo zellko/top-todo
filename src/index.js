@@ -33,7 +33,6 @@ GET FORM DATA
 
 function getFormData() {
     const formData = new FormData(document.querySelector('form'));
-
     //... Convert form data to array
     let formDataArray = [];
     for (let pair of formData.entries()) {
@@ -56,7 +55,7 @@ TODO OBJECT CREATION / MODIFICATION
 
 const ToDoObject = ([...args]) => {
     // Factory function to create ToDo Object
-    console.log(args);
+    //console.log(args);
 
     // Get the datas from the argument
     const title = args[0];
@@ -69,14 +68,25 @@ const ToDoObject = ([...args]) => {
     // const getNote = () => args[2];
     // const getProject = () => args[3];
     // const getPriority = () => args[4];
+    const isDone = false;
     const todoID = toDoListArray.length;
 
     const push = () => {
         // Push the datas to the ToDo list array
-        toDoListArray.push({ title: title, date: date, note: note, project: project, priority: priority, id: todoID })
+        toDoListArray.push({ title: title, date: date, note: note, project: project, priority: priority, isDone: isDone, id: todoID })
     };
 
     return { push };
+};
+
+function editToDo(id, newData) {
+    // Function to edit ToDo object data
+    if (newData[1] !== "") toDoListArray[id].title = newData[1];
+    toDoListArray[id].date = newData[2];
+    toDoListArray[id].note = newData[3];
+    toDoListArray[id].project = newData[4];
+    toDoListArray[id].priority = newData[5];
+    toDoListArray[id].isDone = newData[0];
 };
 
 
@@ -84,12 +94,16 @@ const ToDoObject = ([...args]) => {
 EVENT LISTENER
 ****************************************/
 
+buttonAddProject.addEventListener("click", () => {
+    console.log(toDoListArray);
+});
+
 buttonAddTodo.addEventListener("click", () => {
     // When the button "ADD TODO" is clicked...
 
     //... Get the datas from the form
     const formData = getFormData();
-    console.log(formData);
+    //console.log(formData);
 
     //... Create a new object
     const newTodo = ToDoObject(formData);
@@ -103,15 +117,15 @@ buttonAddTodo.addEventListener("click", () => {
 });
 
 content.addEventListener("click", (e) => {
-    console.log(e);
-    console.log(e.target.classList);
+    //console.log(e);
+    //console.log(e.target.classList);
 
     // Extend the ToDo card if the button is clicked 
     if (e.target.classList[0] === "todo-card-extend") {
         const card = e.target.parentElement;
         const chevronImage = e.target;
 
-        console.log(e.target)
+        //console.log(e.target)
         for (let child of card.childNodes) {
             if (child.classList[1] === "todo-card-optional") {
                 child.classList.toggle("show");
@@ -121,6 +135,36 @@ content.addEventListener("click", (e) => {
         chevronImage.classList.toggle("rotate"); // Rotate "chevron" image
 
     };
+});
+
+content.addEventListener("change", (e) => {
+    if (e.target.form.classList[0] === "todo-form") return; // ignore if the change is from "Add Todo" form
+
+    const todoID = e.target.parentElement.parentElement.getAttribute("id");
+    const toDoForm = e.target.parentElement;
+    const toDoFormData = toDoForm.elements;
+    let formDataArray = [];
+
+    for (let formElement of toDoFormData) {
+        // console.log(formElement);
+        if (formElement.getAttribute("type") === "checkbox") {
+            formDataArray.push(formElement.checked);
+        } else {
+            formDataArray.push(formElement.value);
+        };
+    };
+
+    //If ToDo title is remvoed, it's restored
+    if (toDoFormData[1].value === "") {
+        toDoFormData[1].value = toDoListArray[todoID].title;
+    };
+
+    editToDo(todoID, formDataArray);
+
+
+
+    //removeRemoveAllTodo();
+    //domLoadAllTodo();
 });
 
 formextend.addEventListener("click", (e) => {

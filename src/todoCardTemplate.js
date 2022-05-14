@@ -4,6 +4,7 @@ import deleteIcon from './delete.svg';
 function createTodoCard(projectList) {
     const toDoCard = document.createElement("div");
     toDoCard.classList.add("todo-card");
+    const toDoForm = document.createElement("form");
 
     const toDoCheckBox = document.createElement("input");
     toDoCheckBox.type = "checkbox";
@@ -39,21 +40,21 @@ function createTodoCard(projectList) {
     prioTwo.textContent = "2";
     prioTree.value = 3;
     prioTree.textContent = "3";
-
     toDoPriotity.append(prioOne, prioTwo, prioTree);
 
     toDoextend.classList.add("todo-card-extend");
     toDoTitle.classList.add("todo-card-input");
     toDoCheckBox.classList.add("todo-card-input");
     toDoDate.classList.add("todo-card-input");
+    toDoDate.classList.add("todo-card-optional");
     toDoNote.classList.add("todo-card-input");
     toDoNote.classList.add("todo-card-optional");
     toDoProject.classList.add("todo-card-input");
     toDoProject.classList.add("todo-card-optional");
     toDoPriotity.classList.add("todo-card-input");
     toDoPriotity.classList.add("todo-card-optional");
-    toDoCard.append(toDoCheckBox, toDoTitle, toDoDate, toDoextend, toDoDelete, toDoNote, toDoProject, toDoPriotity);
-
+    toDoForm.append(toDoCheckBox, toDoTitle, toDoDate, toDoNote, toDoProject, toDoPriotity, toDoextend, toDoDelete);
+    toDoCard.appendChild(toDoForm);
     return toDoCard;
 };
 
