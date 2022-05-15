@@ -20,7 +20,7 @@ HTML/CSS:
 2. Create function/module for the application:
 - [ ] Check if local storage is available
 - [x] Create New ToDo
-- [ ] Remove ToDo
+- [x] Remove ToDo
 - [x] Remove All ToDo
 - [x] Edit ToDo
 - [ ] (Sorting ToDo based on x criteria)
@@ -29,12 +29,12 @@ HTML/CSS:
 3. DOM Manipulation:
 - [ ] Module to: Display project list on page dynamically(DOM Manipulation)
 - [x] Module to: Display ToDo list on page dynamically(DOM Manipulation), ALL TODO's
-- [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), TODAY TODO's
+- [x] Module to: Display ToDo list on page dynamically(DOM Manipulation), TODAY TODO's
 - [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), NEXT 7 DAYS TODO's
 - [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), IMPORTANT TODO's
 - [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), PROJECT TODO's
 - [x] Module to: Create ToDo "card" template
-- [ ] Allow user to edit toDo object
+- [x] Allow user to edit toDo object
 
 4. Check for SOLID Devlopement:
 - [ ] Refactor / check code for SOLID devlopement
