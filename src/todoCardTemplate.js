@@ -1,7 +1,7 @@
 import extendIcon from './chevron-down.svg';
 import deleteIcon from './delete.svg';
 
-function createTodoCard(projectList) {
+function createTodoCard(projectList, isInPast) {
     const toDoCard = document.createElement("div");
     toDoCard.classList.add("todo-card");
     const toDoForm = document.createElement("form");
@@ -53,6 +53,11 @@ function createTodoCard(projectList) {
     toDoProject.classList.add("todo-card-optional");
     toDoPriotity.classList.add("todo-card-input");
     toDoPriotity.classList.add("todo-card-optional");
+    toDoDelete.classList.add("todo-delete");
+    console.log(isInPast);
+    if (isInPast) toDoForm.classList.add("inPast");
+    toDoForm.classList.add("card-form");
+
     toDoForm.append(toDoCheckBox, toDoTitle, toDoDate, toDoNote, toDoProject, toDoPriotity, toDoextend, toDoDelete);
     toDoCard.appendChild(toDoForm);
     return toDoCard;

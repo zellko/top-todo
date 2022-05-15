@@ -13,17 +13,17 @@
     <div class="sidebar">
         <h1>ToDo List</h1>
         <ul>
-            <li>Today</li>
-            <li>Next 7 days</li>
-            <li>Important</li>
-            <li>All tasks</li>
+            <li class="generic-sorting" sorting="today">Today</li>
+            <li class="generic-sorting" sorting="next">Next 7 days</li>
+            <li class="generic-sorting" sorting="important">Important</li>
+            <li class="generic-sorting" sorting="all">All tasks</li>
         </ul>
 
         <h3>Project</h3>
         <ul class="project-list">
-            <li>TOP</li>
-            <li>Personal</li>
-            <li>Default</li>
+            <li class="project-sorting">TOP</li>
+            <li class="project-sorting">Personal</li>
+            <li class="project-sorting">Default</li>
         </ul>
 
         <button>New Project</button>
@@ -32,12 +32,12 @@
         <form class="todo-form" action="">
 
             <div class="form-title-div">
-                <input type="text" id="form-title" name="form-title" placeholder="ToDo Title..." required>
+                <input type="text" id="form-title" name="form-title" placeholder="ToDo Title..." pattern=".*[^ ].*" required>
                 <!-- <label for="form-title">ToDo Title</label> -->
-                <!-- <p class="form-required">required</p> -->
+                <p class="form-required">Tile is required!</p>
             </div>
 
-            <div class="form-date-div">
+            <div class="form-date-div form-optional">
                 <input type="date" id="form-date" name="form-date">
                 <!-- <p class="form-required">required</p> -->
             </div>
@@ -73,6 +73,7 @@
             <input type="text" name="description" id="form-description" placeholder="ToDo Note...">
             <input type="date" name="date" id="form-date"> -->
             <button class="form-button" type="button">ADD TODO</button>
+
             <svg style="width:36px;height:36px" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
             </svg>

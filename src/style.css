@@ -11,6 +11,7 @@
     --text-light: #adbac7;
     --blue: #539bf5;
     --green: #347d39;
+    --red: #c94f4a;
 }
 
 body {
@@ -23,6 +24,11 @@ body {
 
 h1 {
     color: var(--blue);
+}
+
+h2 {
+    color: var(--text-light);
+    font-style: italic;
 }
 
 ul {
@@ -38,7 +44,6 @@ SIDEBAR
     background-color: var(--bg-color-sidebar);
     flex: 1;
     min-width: 250px;
-    padding: 16px;
 }
 
 li:hover {
@@ -77,7 +82,7 @@ ADD TODO FORM
     display: grid;
     align-items: center;
     grid-template-rows: 36px auto auto auto;
-    grid-template-columns: 1fr 150px 36px;
+    grid-template-columns: 1fr 36px;
     margin-bottom: 32px;
     border-bottom: 6px solid var(--blue);
 }
@@ -85,6 +90,7 @@ ADD TODO FORM
 .form-title-div,
 .form-date-div,
 .form-button {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,7 +101,7 @@ ADD TODO FORM
 }
 
 .form-date-div {
-    grid-column: 2;
+    grid-column: 1;
 }
 
 .form-title-div>input,
@@ -149,7 +155,7 @@ ADD TODO FORM
 form svg {
     display: flex;
     justify-self: center;
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 1;
     transition: all .3s ease;
 }
@@ -157,6 +163,26 @@ form svg {
 form svg:hover {
     cursor: pointer;
     color: var(--blue);
+}
+
+.form-required {
+    display: none;
+    grid-column: 1;
+    grid-row: 2;
+    color: var(--red);
+    font-style: italic;
+    margin: 8px 0;
+}
+
+#form-title:focus:invalid {
+    border: 1px solid red;
+}
+
+#form-title:focus:invalid+.form-required {
+    display: block;
+    position: absolute;
+    right: 25px;
+    top: 0px;
 }
 
 
@@ -183,7 +209,7 @@ input:not(:placeholder-shown)+label {
 */
 
 .form-optional {
-    grid-column: span 2;
+    grid-column: 1;
     display: none;
 }
 
@@ -192,14 +218,16 @@ input:not(:placeholder-shown)+label {
  TODO CARD
 ***********************/
 
-.todo-card {
+.card-form {
     display: grid;
     align-items: center;
     grid-template-rows: 36px;
-    grid-template-columns: min-content 1fr 150px 36px 36px;
+    grid-template-columns: min-content 1fr 36px 36px;
     gap: 8px;
     border: 2px solid var(--bg-color-sidebar);
     padding: 8px;
+    margin-bottom: 16px;
+    transition: all 1s ease;
 }
 
 .todo-card-input {
@@ -208,10 +236,8 @@ input:not(:placeholder-shown)+label {
     align-items: center;
 }
 
-.todo-card-input {}
-
 .todo-card-optional {
-    grid-column: 2 /4;
+    grid-column: 2 / 3;
     display: none;
 }
 
@@ -220,7 +246,7 @@ input:not(:placeholder-shown)+label {
     color: var(--text-light);
     opacity: 1;
     border: 0;
-    border-bottom: 1px solid var(--blue);
+    /* border-bottom: 1px solid var(--blue); */
     padding: 8px;
     font-size: 1rem;
 }
@@ -229,6 +255,16 @@ input:not(:placeholder-shown)+label {
     display: flex;
     justify-self: center;
     transition: all .3s ease;
+    grid-row: 1;
+    grid-column: 3/4;
+}
+
+.todo-card img:nth-last-child(1) {
+    grid-column: 3/4;
+}
+
+.todo-card img:nth-last-child(2) {
+    grid-column: 4/5;
 }
 
 .todo-card img:hover {
@@ -247,4 +283,21 @@ JS CLASS
 
 .rotate {
     transform: rotate(180deg);
+}
+
+.inPast {
+    border-left: 3px solid var(--red);
+}
+
+.activeSelection {
+    background-color: var(--bg-color-li-hover);
+    color: var(--blue);
+    font-size: 1.3rem;
+    padding: 8px 0 8px 16px;
+    margin: 8px 0;
+    text-align: start;
+}
+
+.removed {
+    opacity: 0;
 }
