@@ -35,6 +35,10 @@ ul {
     list-style: none;
 }
 
+li {
+    transition: all 0.1s ease;
+}
+
 
 /***********************
 SIDEBAR
@@ -292,7 +296,7 @@ JS CLASS
 .activeSelection {
     background-color: var(--bg-color-li-hover);
     color: var(--blue);
-    font-size: 1.3rem;
+    font-size: 1rem;
     padding: 8px 0 8px 16px;
     margin: 8px 0;
     text-align: start;
@@ -300,4 +304,8 @@ JS CLASS
 
 .removed {
     opacity: 0;
+}
+
+.added {
+    opacity: 1;
 }

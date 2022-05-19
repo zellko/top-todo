@@ -13,17 +13,17 @@
     <div class="sidebar">
         <h1>ToDo List</h1>
         <ul>
-            <li class="generic-sorting" sorting="today">Today</li>
-            <li class="generic-sorting" sorting="next">Next 7 days</li>
-            <li class="generic-sorting" sorting="important">Important</li>
-            <li class="generic-sorting" sorting="all">All tasks</li>
+            <li class="sorting" sorting="today">Today</li>
+            <li class="sorting" sorting="next">Next 7 days</li>
+            <li class="sorting" sorting="important">Important</li>
+            <li class="sorting" sorting="all">All tasks</li>
         </ul>
 
         <h3>Project</h3>
         <ul class="project-list">
-            <li class="project-sorting">TOP</li>
-            <li class="project-sorting">Personal</li>
-            <li class="project-sorting">Default</li>
+            <li class="sorting" sorting="project">TOP</li>
+            <li class="sorting" sorting="project">Personal</li>
+            <li class="sorting" sorting="project">Default</li>
         </ul>
 
         <button>New Project</button>
@@ -59,9 +59,9 @@
 
                 <label for="form-prio">Priority:</label>
                 <select id="form-prio" name="form-prio">
-                    <option value=1>1</option>
-                    <option value=2>2</option>
                     <option value=3>3</option>
+                    <option value=2>2</option>
+                    <option value=1>1</option>
                   </select>
             </div>
 
