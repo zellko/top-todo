@@ -30,9 +30,9 @@ HTML/CSS:
 - [ ] Module to: Display project list on page dynamically(DOM Manipulation)
 - [x] Module to: Display ToDo list on page dynamically(DOM Manipulation), ALL TODO's
 - [x] Module to: Display ToDo list on page dynamically(DOM Manipulation), TODAY TODO's
-- [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), NEXT 7 DAYS TODO's
-- [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), IMPORTANT TODO's
-- [ ] Module to: Display ToDo list on page dynamically(DOM Manipulation), PROJECT TODO's
+- [x] Module to: Display ToDo list on page dynamically(DOM Manipulation), NEXT 7 DAYS TODO's
+- [x] Module to: Display ToDo list on page dynamically(DOM Manipulation), IMPORTANT TODO's
+- [x] Module to: Display ToDo list on page dynamically(DOM Manipulation), PROJECT TODO's
 - [x] Module to: Create ToDo "card" template
 - [x] Allow user to edit toDo object
 
@@ -42,13 +42,18 @@ HTML/CSS:
 ## Ressources:
 Images:
 - x
+
 Color Palette:
 - github.com
+
 Icons:
 - https://materialdesignicons.com/
+
 Font:
 - x
+
 Code:
-- x
+- https://usefulangle.com/post/377/css-animation-on-dom-insert
+
 Inspiration:
 - x
