@@ -23,6 +23,7 @@ HTML/CSS:
 - [x] Remove ToDo
 - [x] Remove All ToDo
 - [x] Edit ToDo
+- [x] When a ToDo is created/modified, check if it shoud be show or not 
 - [ ] (Sorting ToDo based on x criteria)
 - [ ] ...
 
@@ -57,3 +58,10 @@ Code:
 
 Inspiration:
 - x
+
+
+___
+
+- ToDo ID are now created with Date timestamp
+- ToDo are removed / moved when updated
+- Modal to display if the todo is moved

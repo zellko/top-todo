@@ -1,7 +1,7 @@
 import "./style.css";
 import { modifyDOMcontent } from "./modifyDOMcontent";
 import { modifyDOMproject } from "./modifyDOMproject"
-import { isToday, parseISO, compareAsc, startOfToday, format, addDays } from 'date-fns';
+import { isToday, parseISO, compareAsc, startOfToday, format, addDays, getTime } from 'date-fns';
 
 const projectList = document.querySelector(".project-list");
 const content = document.querySelector(".content");
@@ -10,6 +10,8 @@ const buttonAddProject = document.querySelector("button");
 const buttonAddTodo = document.querySelector(".form-button");
 const formOptionals = document.querySelectorAll(".form-optional");
 const sorting = document.querySelectorAll(".sorting");
+const modal = document.querySelector(".info");
+const modalClose = document.querySelector(".info button");
 
 const projectSelector = document.querySelector("#form-project");
 const dateSelector = document.querySelector("#form-date");
@@ -19,8 +21,13 @@ const form = document.querySelector('form'); //Get the FORM DOM element
 
 let projectListArray = ["default", "top"];
 let toDoListArray = [];
-let todoID = 0; // TODO: WITH LOCAL STORAGE, ID NEED TO START FROM X DEPENDING OF WHAT IS ALREADY STORED
 let activeSelection = "";
+let activeProject = "";
+
+function chooseID() {
+    const id = getTime(new Date());
+    return id;
+}
 
 
 /****************************************
@@ -31,38 +38,51 @@ modifyDOMcontent.loadAllTodo(toDoListArray, projectListArray); //test
 activeSelection = "all"
 
 
-function updateDOM(todoID, domElement) {
+function updateDOM(todoID) {
     // After an update of a ToDo, check if it's need to be removed from DOM
+    const todayDate = startOfToday()
+    const domElement = document.querySelector(`[id='${todoID}']`);
     let toDoObject = {};
+    let result = undefined;
+    let removeTodo = false;
+
+    console.log(domElement);
+
     for (let element of toDoListArray) {
         if (element.id !== Number(todoID)) continue;
         console.log(element + " " + element.id)
         toDoObject = element;
     };
 
+    const isoDate = parseISO(toDoObject.date);
+
     switch (activeSelection) {
         case "today":
-            const todayDate = startOfToday()
-            const isoDate = parseISO(toDoObject.date);
-            const result = compareAsc(isoDate, todayDate)
-
-            if (result === 1) {
-                // TEST TRANSITION
-                domElement.classList.add("removed");
-                domElement.addEventListener("transitionend", () => {
-                    modifyDOMcontent.removeATodo(toDoObject.id);
-                })
-            };
-
+            result = compareAsc(isoDate, todayDate);
+            if (result === 1) removeTodo = true;
             break;
         case "next":
+            const nextWeekDate = addDays(todayDate, 7);
+            result = compareAsc(isoDate, nextWeekDate);
+            if (result === 1) removeTodo = true;
             break;
         case "important":
+            if (toDoObject.priority !== 1) removeTodo = true;
+            break;
+        case "project":
+            if (toDoObject.project !== activeProject) removeTodo = true;
             break;
         case "all":
             break;
-        default:
-            break;
+    };
+
+    if (removeTodo) {
+        // TEST TRANSITION
+        domElement.classList.add("removed");
+        modal.classList.add("show");
+        //domElement.addEventListener("transitionend", () => {
+        modifyDOMcontent.removeATodo(toDoObject.id);
+        //});
     };
 };
 
@@ -107,7 +127,7 @@ class ToDoObject {
         this.project = args[3];
         this.priority = args[4];
         this.isDone = false;
-        this.id = todoID;
+        this.id = chooseID();
     }
 
     edit(newData) {
@@ -133,7 +153,8 @@ EVENT LISTENER
 buttonAddProject.addEventListener("click", () => {
     //TEST
     console.log(toDoListArray);
-    //modifyDOMproject.removeProjectList();
+    console.log(chooseID());
+
 });
 
 buttonAddTodo.addEventListener("click", () => {
@@ -147,11 +168,10 @@ buttonAddTodo.addEventListener("click", () => {
     //... Create a new object
     const newTodo = new ToDoObject(formDataArray);
     newTodo.push(); //... and push it to the ToDo list array
-    ++todoID;
+
     //... Refresh ToDo Display
-    //removeRemoveAllTodo();
-    modifyDOMcontent.removeRemoveAllTodo();
-    modifyDOMcontent.loadAllTodo(toDoListArray, projectListArray);
+    modifyDOMcontent.loadATodo(newTodo, projectListArray);
+    updateDOM(newTodo.id);
 });
 
 content.addEventListener("click", (e) => {
@@ -211,15 +231,10 @@ content.addEventListener("change", (e) => {
 
     for (let element of toDoListArray) {
         if (element.id !== Number(todoID)) continue;
-        console.log(element)
         element.edit(formDataArray);
     };
 
-    //editToDo(todoID, formDataArray); //Edit ToDo objet with the new datas
-    updateDOM(todoID, toDoFormElement);
-
-    //removeRemoveAllTodo();
-    //domLoadAllTodo();
+    updateDOM(todoID);
 });
 
 formextend.addEventListener("click", (e) => {
@@ -262,14 +277,16 @@ sorting.forEach(options => options.addEventListener("click", (e) => {
             form[4].value = 1;
             break;
         case "all":
-            modifyDOMcontent.loadAllTodo(toDoListArray, projectListArray); //test
+            modifyDOMcontent.loadAllTodo(toDoListArray, projectListArray);
             activeSelection = "all";
 
             break;
         case "project":
             const project = e.target.textContent.toLowerCase();
             modifyDOMcontent.loadProjectTodo(toDoListArray, projectListArray, project);
+
             activeSelection = "project";
+            activeProject = project
 
             form[3].value = project;
             break;
@@ -277,3 +294,5 @@ sorting.forEach(options => options.addEventListener("click", (e) => {
             break;
     };
 }));
+
+modalClose.addEventListener("click", () => modal.classList.remove("show"));

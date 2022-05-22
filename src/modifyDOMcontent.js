@@ -187,8 +187,8 @@ const modifyDOMcontent = (() => {
         removeMessage();
 
         for (let element of listArray) {
-            const isoDate = parseISO(element.date);
-            const result = compareAsc(isoDate, todayDate)
+            // const isoDate = parseISO(element.date);
+            // const result = compareAsc(isoDate, todayDate)
 
             if (element.project !== project) continue; // If ToDo date is not defined, ignore it.
 
@@ -209,11 +209,26 @@ const modifyDOMcontent = (() => {
             displayMessage(`No ToDo for ${project.toUpperCase()} project! Create your first ToDo using the form above!`);
             return;
         };
-
-
     };
 
-    return { removeATodo, removeRemoveAllTodo, loadAllTodo, loadTodayTodo, loadNextWeelTodo, loadPrioTodo, loadProjectTodo };
+    const loadATodo = (todo, projectList) => {
+        console.log(`Loading a single ToDo's`);
+
+        removeMessage();
+
+        const isInPast = compareDate(todo.date);
+
+        const toDoCard = createTodoCard(projectList, isInPast);
+
+        populateCard(toDoCard, todo);
+
+        const toDoID = todo.id;
+
+        toDoCard.setAttribute("ID", toDoID);
+        pageContent.appendChild(toDoCard);
+    };
+
+    return { removeATodo, removeRemoveAllTodo, loadAllTodo, loadTodayTodo, loadNextWeelTodo, loadPrioTodo, loadProjectTodo, loadATodo };
 })();
 
 export { modifyDOMcontent }
