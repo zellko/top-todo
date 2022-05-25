@@ -54,7 +54,7 @@ function createTodoCard(projectList, isInPast) {
     toDoPriotity.classList.add("todo-card-input");
     toDoPriotity.classList.add("todo-card-optional");
     toDoDelete.classList.add("todo-delete");
-    console.log(isInPast);
+
     if (isInPast) toDoForm.classList.add("inPast");
     toDoForm.classList.add("card-form");
 

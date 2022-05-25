@@ -21,12 +21,19 @@
 
         <h3>Project</h3>
         <ul class="project-list">
-            <li class="sorting" sorting="project">TOP</li>
-            <li class="sorting" sorting="project">Personal</li>
-            <li class="sorting" sorting="project">Default</li>
         </ul>
 
-        <button>New Project</button>
+        <form class="project-form" action="">
+
+            <div>
+                <!-- <label for="project-form-input">Project Title:</label> -->
+                <input type="text" name="project-form-input" id="project-form-input" placeholder="Project name...">
+                <button class="project-form-button" type="button">+</button>
+            </div>
+
+        </form>
+
+
     </div>
     <div class="content">
         <form class="todo-form" action="">
@@ -48,13 +55,9 @@
                 <!-- <p class="form-required">required</p> -->
             </div>
 
-
-
             <div class="form-select-div form-optional">
                 <label for="form-project">Project:</label>
                 <select id="form-project" name="form-project">
-                    <option value="top">TOP</option>
-                    <option value="default">Default</option>
                 </select>
 
                 <label for="form-prio">Priority:</label>
@@ -62,7 +65,7 @@
                     <option value=3>3</option>
                     <option value=2>2</option>
                     <option value=1>1</option>
-                  </select>
+                </select>
             </div>
 
             <!-- <label id="form-title-label" for="title">
