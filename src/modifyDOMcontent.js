@@ -2,19 +2,22 @@
 // ... load "ToDo" list based on the selection from the sidebar (Today, Next 7 days, Important,...)
 
 import { createTodoCard } from "./todoCardTemplate";
-import { isToday, parseISO, compareAsc, startOfToday, addDays, format } from 'date-fns';
-
+import { dateTime } from "./dateTime";
 
 const pageContent = document.querySelector(".content");
-const todayDate = startOfToday()
+const todayDate = dateTime.todayDate();
 
-function compareDate(date) {
-    const isoDate = parseISO(date);
-    const result = compareAsc(isoDate, todayDate)
-    let isInPast = false;
-    if (result === -1) isInPast = true;
-    return isInPast;
-};
+
+function loadToDoDom(todo, projectList) {
+    const isInPast = dateTime.isDateInPast(todo.date);
+
+    const toDoCard = createTodoCard(projectList, isInPast);
+    populateCard(toDoCard, todo);
+
+    const toDoID = todo.id;
+    toDoCard.setAttribute("ID", toDoID);
+    pageContent.appendChild(toDoCard);
+}
 
 function populateCard(toDoCard, element) {
     const toDoCardForm = toDoCard.childNodes[0];
@@ -74,14 +77,7 @@ const modifyDOMcontent = (() => {
         };
 
         listArray.forEach(element => {
-            const isInPast = compareDate(element.date);
-
-            const toDoCard = createTodoCard(projectList, isInPast);
-            populateCard(toDoCard, element);
-
-            const toDoID = element.id;
-            toDoCard.setAttribute("ID", toDoID);
-            pageContent.appendChild(toDoCard);
+            loadToDoDom(element, projectList);
         });
     };
 
@@ -92,21 +88,13 @@ const modifyDOMcontent = (() => {
         removeMessage();
 
         for (let element of listArray) {
-            const isoDate = parseISO(element.date);
-            const result = compareAsc(isoDate, todayDate)
+            const isoDate = dateTime.parseDate(element.date);
+            const result = dateTime.compareDate(isoDate, todayDate)
 
             if (result === 1) continue; // If ToDo date is in future, ignore it.
             if (element.date === "") continue; // If ToDo date is not defined, ignore it.
 
-            const isInPast = compareDate(element.date);
-
-            const toDoCard = createTodoCard(projectList, isInPast);
-            populateCard(toDoCard, element);
-
-            const toDoID = element.id;
-
-            toDoCard.setAttribute("ID", toDoID);
-            pageContent.appendChild(toDoCard);
+            loadToDoDom(element, projectList);
 
             todayArray.push(element);
         };
@@ -117,30 +105,22 @@ const modifyDOMcontent = (() => {
         };
     };
 
-    const loadNextWeelTodo = (listArray, projectList) => {
+    const loadNextWeekTodo = (listArray, projectList) => {
         console.log("Loading NextWeek ToDo's");
         let nextWeekArray = [];
 
         removeMessage();
 
         for (let element of listArray) {
-            const isoDate = parseISO(element.date);
-            const nextWeekDate = addDays(todayDate, 7);
+            const isoDate = dateTime.parseDate(element.date);
+            const nextWeekDate = dateTime.nextWeekDate(todayDate, 7);
 
-            const result = compareAsc(isoDate, nextWeekDate)
+            const result = dateTime.compareDate(isoDate, nextWeekDate)
 
             if (result === 1) continue; // If ToDo date is in future, ignore it.
             if (element.date === "") continue; // If ToDo date is not defined, ignore it.
 
-            const isInPast = compareDate(element.date);
-
-            const toDoCard = createTodoCard(projectList, isInPast);
-            populateCard(toDoCard, element);
-
-            const toDoID = element.id;
-
-            toDoCard.setAttribute("ID", toDoID);
-            pageContent.appendChild(toDoCard);
+            loadToDoDom(element, projectList);
 
             nextWeekArray.push(element);
         };
@@ -160,16 +140,7 @@ const modifyDOMcontent = (() => {
         for (let element of listArray) {
 
             if (element.priority !== "1") continue; // If ToDo date is not defined, ignore it.
-
-            const isInPast = compareDate(element.date);
-
-            const toDoCard = createTodoCard(projectList, isInPast);
-            populateCard(toDoCard, element);
-
-            const toDoID = element.id;
-
-            toDoCard.setAttribute("ID", toDoID);
-            pageContent.appendChild(toDoCard);
+            loadToDoDom(element, projectList);
 
             prioArray.push(element);
         };
@@ -192,15 +163,7 @@ const modifyDOMcontent = (() => {
 
             if (element.project !== project) continue; // If ToDo date is not defined, ignore it.
 
-            const isInPast = compareDate(element.date);
-
-            const toDoCard = createTodoCard(projectList, isInPast);
-            populateCard(toDoCard, element);
-
-            const toDoID = element.id;
-
-            toDoCard.setAttribute("ID", toDoID);
-            pageContent.appendChild(toDoCard);
+            loadToDoDom(element, projectList);
 
             projectArray.push(element);
         };
@@ -215,20 +178,10 @@ const modifyDOMcontent = (() => {
         console.log(`Loading a single ToDo's`);
 
         removeMessage();
-
-        const isInPast = compareDate(todo.date);
-
-        const toDoCard = createTodoCard(projectList, isInPast);
-
-        populateCard(toDoCard, todo);
-
-        const toDoID = todo.id;
-
-        toDoCard.setAttribute("ID", toDoID);
-        pageContent.appendChild(toDoCard);
+        loadToDoDom(todo, projectList);
     };
 
-    return { removeATodo, removeRemoveAllTodo, loadAllTodo, loadTodayTodo, loadNextWeelTodo, loadPrioTodo, loadProjectTodo, loadATodo };
+    return { removeATodo, removeRemoveAllTodo, loadAllTodo, loadTodayTodo, loadNextWeekTodo, loadPrioTodo, loadProjectTodo, loadATodo };
 })();
 
 export { modifyDOMcontent }
