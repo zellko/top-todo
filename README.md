@@ -7,8 +7,7 @@ The Odin Project - JavaScript - Project: Todo List
 HTML/CSS:
 - [x] Create "Static" part of the UI.
 - [x] Create "Add ToDo" form
-- [ ] (Optional: Figure a way to add sub-list / checklist in a ToDo)
-- [ ] Style everything / Refactor / Comments.  
+- [x] Style everything
 
 ### JS
 
@@ -18,17 +17,16 @@ HTML/CSS:
 - [ ] (Add more options (checklist, note, ...))
 
 2. Create function/module for the application:
-- [ ] Check if local storage is available
+- [x] Add local storage if available
 - [x] Create New ToDo
 - [x] Remove ToDo
 - [x] Remove All ToDo
 - [x] Edit ToDo
 - [x] When a ToDo is created/modified, check if it shoud be show or not 
 - [ ] (Sorting ToDo based on x criteria)
-- [ ] ...
 
 3. DOM Manipulation:
-- [ ] Module to: Display project list on page dynamically(DOM Manipulation)
+- [x] Module to: Display project list on page dynamically(DOM Manipulation)
 - [x] Module to: Display ToDo list on page dynamically(DOM Manipulation), ALL TODO's
 - [x] Module to: Display ToDo list on page dynamically(DOM Manipulation), TODAY TODO's
 - [x] Module to: Display ToDo list on page dynamically(DOM Manipulation), NEXT 7 DAYS TODO's
@@ -37,15 +35,15 @@ HTML/CSS:
 - [x] Module to: Create ToDo "card" template
 - [x] Allow user to edit toDo object
 
-4. Check for SOLID Devlopement:
-- [ ] Refactor / check code for SOLID devlopement
+4. Check for SOLID Development:
+- [x] Refactor / check code for SOLID development
 
 ## Ressources:
 Images:
 - x
 
 Color Palette:
-- github.com
+- https://github.com/
 
 Icons:
 - https://materialdesignicons.com/
@@ -59,9 +57,3 @@ Code:
 Inspiration:
 - x
 
-
-___
-
-- ToDo ID are now created with Date timestamp
-- ToDo are removed / moved when updated
-- Modal to display if the todo is moved
