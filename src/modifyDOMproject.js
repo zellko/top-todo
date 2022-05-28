@@ -45,7 +45,7 @@ const modifyDOMproject = (() => {
             const projectDOMli = document.createElement("li");
             const projectDOMimg = document.createElement("img");
 
-            projectDOMli.textContent = project.toUpperCase();
+            projectDOMli.textContent = project;
             projectDOMimg.src = deleteIcon;
 
             projectDOMimg.className = "project-delete";

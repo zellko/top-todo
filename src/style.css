@@ -10,8 +10,15 @@
     --bg-color-content: #22272e;
     --text-light: #adbac7;
     --blue: #539bf5;
+    --blue-transparent: rgba(84, 156, 245, 0.2);
     --green: #347d39;
     --red: #c94f4a;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("./OpenSans-VariableFont_wdth\,wght.ttf") format("ttf");
+    font-style: normal;
 }
 
 body {
@@ -21,10 +28,13 @@ body {
     min-height: 100vh;
     color: var(--text-light);
     font-family: sans-serif;
+    font-family: "Open Sans", ubuntu, sans-serif;
 }
 
 h1 {
     color: var(--blue);
+    font-weight: 700;
+    font-size: 2.3rem;
 }
 
 h2 {
@@ -40,14 +50,18 @@ li {
     transition: all 0.1s ease;
     display: flex;
     align-items: center;
+    padding: 4px 0 4px 32px;
+    text-transform: capitalize;
+}
+
+li:hover {
+    cursor: pointer;
+    background-color: var(--bg-color-li-hover);
 }
 
 li img {
     margin-left: auto;
-}
-
-li img:hover {
-    transform: scale(1.2);
+    margin-right: 4%;
 }
 
 
@@ -58,21 +72,23 @@ SIDEBAR
 .sidebar {
     background-color: var(--bg-color-sidebar);
     flex: 1;
-    min-width: 250px;
+    width: 20%;
+    max-width: 330px;
+    padding: 16px 0 16px 0;
 }
 
-li:hover {
-    cursor: pointer;
-    background-color: var(--bg-color-li-hover);
+.sidebar h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 20px;
+    padding-top: 20px;
+    color: var(--blue);
+    border-top: 2px solid var(--blue-transparent);
 }
 
-button {
-    padding: 8px;
-    border: 0;
-}
-
-button:hover {
-    cursor: pointer;
+.sidebar h1,
+h3 {
+    padding-left: 16px;
 }
 
 
@@ -82,8 +98,8 @@ CONTENT
 
 .content {
     background-color: var(--bg-color-content);
-    flex: 3;
-    padding: 64px;
+    flex: 1;
+    padding: 4%;
     display: flex;
     flex-direction: column;
 }
@@ -109,14 +125,6 @@ ADD TODO FORM
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.form-title-div {
-    grid-column: 1;
-}
-
-.form-date-div {
-    grid-column: 1;
 }
 
 .form-title-div>input,
@@ -160,6 +168,7 @@ ADD TODO FORM
     border: 0;
     grid-column: 1;
     margin: 8px 0 32px 0;
+    padding: 8px;
 }
 
 .form-button:hover {
@@ -200,29 +209,6 @@ form svg:hover {
     top: 0px;
 }
 
-
-/* 
-form>div {
-    position: relative;
-}
-
-form>div>label {
-    opacity: 1;
-    position: absolute;
-    top: 8px;
-    left: 4px;
-}
-
-input:focus+label {
-    opacity: 0;
-}
-
-input:not(:placeholder-shown)+label {
-    opacity: 0;
-}
-
-*/
-
 .form-optional {
     grid-column: 1;
     display: none;
@@ -236,14 +222,12 @@ ADD PROJECT FORM
 .project-form {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    padding: 0px 0 0px 32px;
 }
 
 .project-form div {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
 }
 
 .project-form input {
@@ -253,6 +237,8 @@ ADD PROJECT FORM
     font-size: 1rem;
     font-style: italic;
     padding: 6px;
+    min-width: 92px;
+    max-width: 160px;
 }
 
 .project-form button {
@@ -262,6 +248,8 @@ ADD PROJECT FORM
     color: var(--blue);
     font-weight: 700;
     font-size: 2rem;
+    margin-left: auto;
+    margin-right: 5%;
 }
 
 .project-form button:hover {
@@ -305,7 +293,6 @@ ADD PROJECT FORM
     color: var(--text-light);
     opacity: 1;
     border: 0;
-    /* border-bottom: 1px solid var(--blue); */
     padding: 8px;
     font-size: 1rem;
 }
@@ -337,11 +324,10 @@ MODAL
 ***********************/
 
 .info {
-    position: absolute;
+    position: fixed;
     display: none;
     align-items: center;
     justify-content: center;
-    bottom: 36px;
     left: 20%;
     width: 60%;
     height: 48px;
@@ -385,10 +371,11 @@ JS CLASS
 .activeSelection {
     background-color: var(--bg-color-li-hover);
     color: var(--blue);
-    font-size: 1rem;
-    padding: 8px 0 8px 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 8px 0 8px 42px;
     margin: 8px 0;
-    text-align: start;
+    box-shadow: 0 0 1px 1px var(--blue);
 }
 
 .removed {
